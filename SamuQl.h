@@ -1266,6 +1266,13 @@ public:
         return ss.str();
 
     }
+    
+    class comp {
+        public:
+        bool operator()(auto &&t1, auto &&t2) {
+            return t1.second > t2.second;
+        }
+    };
 
     std::string printSortedRules() {
 
@@ -1276,12 +1283,16 @@ public:
             tmp.push_back ( p );
         }
 
+        /*
         std::sort (
             std::begin ( tmp ), std::end ( tmp ),
         [=] ( auto&& t1, auto&&t2 ) {
             return t1.second > t2.second;
         }
         );
+        */
+        
+        std::sort(tmp.begin(), tmp.end(), comp());
 
         std::stringstream ss;
 
